@@ -1,0 +1,25 @@
+//on pc 
+deafult gatway is public ip 
+
+//on private network router:
+
+int [pc port]
+ip add [router private ip] [subnetmask]
+
+int loopback 0
+ip add [public ip of router side on pc side] [subnet mask]
+
+router rip
+network [public network id]
+ip nat inside source static [pc private ip] [pc public ip]
+ip nat outside source static [router public ip] [router private ip]
+
+int [outside port]
+ip nat out
+
+int [inside port]
+ip nat inside
+
+//in privelege mode check
+
+sh ip nat translations
